@@ -24,15 +24,15 @@ app.post("/", async (req, res) => {
   DB[id] = { id, clientName };
 
   if (DB[clientId]) {
-    DB[clientId].push({ id, clientId, notes, items, price, validated: false });
+    DB[clientId].push({ id, notes, items, price, validated: false });
   } else {
-    DB[clientId] = [{ id, clientId, notes, items, price, validated: false }];
+    DB[clientId] = [{ id, notes, items, price, validated: false }];
   }
 
   try {
     await axios.post("http://event-srv:8005/events", {
       type: "new-purchase",
-      data: { id, clientId, notes, items, price },
+      data: { id, clientId, notes, items, price, validated: false },
     });
   } catch (error) {
     return res.send(e).end();
