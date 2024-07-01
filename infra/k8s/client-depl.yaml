@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: mohcen/client
+          imagePullPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-clusterip-srv
+spec:
+  type: ClusterIP
+  selector:
+    app: client
+  ports:
+    - name: client
+      protocol: TCP
+      port: 8001
+      targetPort: 8001
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-nodeport-srv
+spec:
+  type: NodePort
+  selector:
+    app: client
+  ports:
+    - name: client
+      port: 8001
+      targetPort: 8001
+      protocol: TCP

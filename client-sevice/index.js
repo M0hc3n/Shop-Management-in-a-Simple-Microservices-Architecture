@@ -32,7 +32,8 @@ app.post("/", async (req, res) => {
       },
     });
   } catch (error) {
-    return res.send(e).end();
+    console.log("ERROR: EVENTS-SRV: ", error);
+    return res.send({ error }).end();
   }
 
   return res

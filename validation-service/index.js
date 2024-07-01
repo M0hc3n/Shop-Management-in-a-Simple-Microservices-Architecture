@@ -30,3 +30,8 @@ app.post("/events", async (req, res) => {
       return res.send({});
   }
 });
+
+
+app.listen(8004, () => {
+  console.log('validation service running on: http://localhost:8004');
+})

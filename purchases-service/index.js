@@ -35,7 +35,8 @@ app.post("/", async (req, res) => {
       data: { id, clientId, notes, items, price, validated: false },
     });
   } catch (error) {
-    return res.send(e).end();
+    console.log("ERROR: PURCHASES-SRV: ", error);
+    return res.send({ error }).end();
   }
 
   return res
