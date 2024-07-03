@@ -21,10 +21,10 @@ app.post("/events", async (req, res) => {
 
   try {
     await Promise.all([
-      axios.post("http://client-srv:8001/events", payload),
-      axios.post("http://purchases-srv:8002/events", payload),
-      axios.post("http://query-srv:8003/events", payload),
-      axios.post("http://validation-srv:8004/events", payload),
+      axios.post("http://localhost:8001/events", payload),
+      axios.post("http://localhost:8002/events", payload),
+      axios.post("http://localhost:8003/events", payload),
+      axios.post("http://localhost:8004/events", payload),
     ]);
 
     return res.send({}).end();

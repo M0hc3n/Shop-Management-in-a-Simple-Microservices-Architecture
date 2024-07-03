@@ -1,8 +1,8 @@
 export type Purchase = {
     clientName: string;
     date: string;
-    items: string[];
-    note: string;
+    items: string;
+    notes: string;
 }
 
 export type Client = {

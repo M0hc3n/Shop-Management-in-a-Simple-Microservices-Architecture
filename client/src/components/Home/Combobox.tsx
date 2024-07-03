@@ -10,21 +10,18 @@ import { useState } from "react";
 import Modal from "react-modal";
 import CreateClient from "../../views/CreateClient";
 import { Client } from "../types";
-
-const people: Client[] = [
-  { id: 1, name: "Tom Cook" },
-  { id: 2, name: "Wade Cooper" },
-  { id: 3, name: "Tanya Fox" },
-  { id: 4, name: "Arlene Mccoy" },
-  { id: 5, name: "Devon Webb" },
-];
+import axios from "axios";
 
 export default function Example({
   selected,
   setSelected,
+  clients,
+  setClients,
 }: {
   selected: Client | null;
   setSelected: React.Dispatch<React.SetStateAction<Client | null>>;
+  clients: Client[];
+  setClients: React.Dispatch<React.SetStateAction<Client[]>>;
 }) {
   const [query, setQuery] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,15 +29,35 @@ export default function Example({
 
   const filteredPeople =
     query === ""
-      ? people
-      : people.filter((person) => {
+      ? clients
+      : clients.filter((person) => {
           return person.name.toLowerCase().includes(query.toLowerCase());
         });
+
+  const handleAddingClient = async () => {
+    try {
+      const res = await axios.post("http://localhost:8001", {
+        clientName: newClient,
+      });
+
+      if (res.status == 201) {
+        setClients((prev) => prev.concat(res.data.data));
+        setIsModalOpen(false);
+        setSelected(res.data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className=" w-full py-5">
       <Modal isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
-        <CreateClient newClient={newClient} setNewClient={setNewClient} />
+        <CreateClient
+          newClient={newClient}
+          setNewClient={setNewClient}
+          handleSubmit={handleAddingClient}
+        />
       </Modal>
 
       <p className="text-md text-gray-500 dark:text-gray-400 mb-2">

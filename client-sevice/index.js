@@ -9,7 +9,7 @@ const DB = {};
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "http://localhost:5173",
   })
 );
 
@@ -24,7 +24,7 @@ app.post("/", async (req, res) => {
   DB[id] = { id, clientName };
 
   try {
-    await axios.post("http://event-srv:8005/events", {
+    await axios.post("http://localhost:8005/events", {
       type: "created-client",
       data: {
         id,
@@ -41,7 +41,8 @@ app.post("/", async (req, res) => {
     .json({
       message: "client created successfully",
       data: {
-        id: DB[id],
+        id: DB[id].id,
+        name: DB[id].clientName,
       },
     })
     .end();
