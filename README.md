@@ -13,4 +13,4 @@
  ![Flowcharts](https://github.com/Mohcen2311/Shop-Management-in-a-Simple-Microservices-Architecture/assets/101293365/601d12b6-8493-4fe7-9ae7-48addca91e84)
 
 ### Credits:
-I went through this [repo](https://github.com/iamrishupatel/simple-microservices) to learn about dockerisation and how to manage those microservices in deployment (preparing yaml configuration files...), and it was a good starter.
+I went through this [repo](https://github.com/iamrishupatel/simple-microservices) to learn about dockerisation and how to manage those microservices in deployment (preparing yaml configuration files...), and I've also inspired the idea of the services from it, so it is a good starter to consider.
