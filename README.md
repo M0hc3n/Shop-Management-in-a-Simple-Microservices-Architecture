@@ -5,7 +5,7 @@
  - **Client (Customers) Service**: a backend service that manages CRUD operations on clients.
  - **Purchases Service**: a backend service that manages CRUD operations on purchases.
  - **Query Service**: a backend service that is used by the client side to fetch clients along with their purchases and display them to the managers).
- - **Validation Service**: a backend service used by the managers (client side) to validate purchases payments (do not get over-hyped, it is a simple toggle :)) )
+ - **Validation Service**: a backend service used to run automated checks/tests on purchases to validate their payments (do not get over-hyped, it is a simple toggle :)) )
  - **Events Service**: a service whose job is to broadcast incoming events from a particular service to the rest of the services. Why using it? because different services need to store some kind of *information* (or let's call it *state*) about other services. In my case, I used it to update the Database in each server (I got too lazy to set up a central one, so I kept it local wrt each service).
 
  This graph shows the project outline in brief:
