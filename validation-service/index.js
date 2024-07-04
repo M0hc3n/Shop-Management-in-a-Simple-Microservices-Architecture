@@ -13,10 +13,12 @@ app.post("/events", async (req, res) => {
   const event = req.body;
   switch (event.type) {
     case "new-purchase":
-      // ?possibility to change it for some advanced logic
+      // ?possibility to change it for some advanced logic 
+      // ?(like checking whether the payment was REALLY made or not)
+
       const validated = true;
       await axios
-        .post("http://events-srv:8005/events", {
+        .post("http://localhost:8005/events", {
           type: "new-purchase-validated",
           data: {
             ...event.data,

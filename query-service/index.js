@@ -35,11 +35,14 @@ function handleEvents(type, data) {
       return;
 
     case "new-purchase-validated":
+      console.log(data);
       for (let iterator of DB[data.clientId]) {
         if (iterator.id === data.id) {
           iterator.validated = true;
         }
       }
+
+      console.log("DB: ", DB);
 
       return;
     default:

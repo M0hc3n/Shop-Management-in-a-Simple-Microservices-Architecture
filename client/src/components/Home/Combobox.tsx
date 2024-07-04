@@ -11,6 +11,7 @@ import Modal from "react-modal";
 import CreateClient from "../../views/CreateClient";
 import { Client } from "../types";
 import axios from "axios";
+import { BASE_API } from "../../api";
 
 export default function Example({
   selected,
@@ -36,7 +37,7 @@ export default function Example({
 
   const handleAddingClient = async () => {
     try {
-      const res = await axios.post("http://localhost:8001", {
+      const res = await axios.post(BASE_API.CLIENT_SRV, {
         clientName: newClient,
       });
 

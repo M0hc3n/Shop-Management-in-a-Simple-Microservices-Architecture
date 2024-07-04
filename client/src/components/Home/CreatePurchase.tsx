@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Combobox from "./Combobox";
 import { Client } from "../types";
 import axios from "axios";
+import { BASE_API } from "../../api";
 
 const CreatePurchase = () => {
   const [items, setItems] = useState("");
@@ -25,7 +26,7 @@ const CreatePurchase = () => {
     try {
       setSuccess(false);
 
-      await axios.post("http://localhost:8002", {
+      await axios.post(BASE_API.PURCHASES_SRV, {
         id: client?.id,
         name: client?.name,
         notes: note,
@@ -41,12 +42,12 @@ const CreatePurchase = () => {
   };
 
   useEffect(() => {
-    if(success){
+    if (success) {
       setTimeout(() => {
         setSuccess(false);
-      }, 3000)
+      }, 3000);
     }
-  },[success])
+  }, [success]);
 
   return (
     <form className="w-[80%] py-[30px] mx-auto">
